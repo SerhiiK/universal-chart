@@ -2,10 +2,22 @@ name: Linter
 
 on:
   pull_request:
+    paths:
+      - 'charts/**'
+  push:
+    branches:
+      - master
+    paths:
+      - 'charts/**'
 
 jobs:
-  helm:
+  lint:
    runs-on: ubuntu-latest
+
+   strategy:
+     matrix:
+       chart: [ app ]
+
    steps:
      - name: Checkout
        uses: actions/checkout@v3
@@ -16,4 +28,4 @@ jobs:
           version: 3.9.3
 
      - name: Helm lint
-       run: helm lint
+       run: helm lint charts/${{ matrix.chart }}
