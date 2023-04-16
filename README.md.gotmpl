@@ -1,0 +1,13 @@
+{{ template "chart.header" . }}
+
+{{ template "chart.description" . }}
+
+## Installing the Chart
+
+To install the chart with the release name `my-release`:
+
+```console
+helm repo add repo http://test.com
+helm install my-release repo/{{ template "chart.name" . }}
+```
+{{ template "chart.valuesSection" . }}

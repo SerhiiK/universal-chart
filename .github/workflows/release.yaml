@@ -24,9 +24,13 @@ jobs:
           version: v3.9.3
 
       - name: Check version of chart
-        run: echo "Tag name is {{ env.GITHUB_REF_NAME }}"
+        run: echo "Tag name is ${{ env.GITHUB_REF_NAME }}"
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.5.0
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      
+      - name: Generate documentation
+        uses: gabe565/setup-helm-docs-action@v1.0.2
+      - run: helm-docs
