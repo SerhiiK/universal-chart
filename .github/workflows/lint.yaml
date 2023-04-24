@@ -19,4 +19,8 @@ jobs:
 
       - name: Generate docs
         uses: gabe565/setup-helm-docs-action@v1
-      - run: helm-docs
+      - run: | 
+          helm-docs
+          git add README.md
+          git commit -m "Generate documentation"
+          git push
