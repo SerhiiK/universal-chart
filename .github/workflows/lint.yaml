@@ -16,3 +16,7 @@ jobs:
 
       - name: Linting chart
         run: helm lint --strict
+
+      - name: Generate docs
+        uses: gabe565/setup-helm-docs-action@v1
+        run: helm-docs
