@@ -27,3 +27,4 @@ jobs:
           git commit -m "Generate documentation"
           echo "Branch is $GITHUB_HEAD_REF"
           git push origin HEAD:$GITHUB_HEAD_REF
+          echo "Finished"
