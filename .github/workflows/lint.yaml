@@ -8,6 +8,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        fetch-depth: 0
 
       - name: Installng Helm
         uses: azure/setup-helm@v3.5
@@ -23,15 +24,13 @@ jobs:
           helm-docs
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-
           git branch 
-
+          # git add README.md
+          # git commit -m "Generate documentation"
           # git pull origin $GITHUB_HEAD_REF
           # git checkout origin/$GITHUB_HEAD_REF
           # git branch 
 
-          # git add README.md
-          # git commit -m "Generate documentation"
           # echo "Branch is $GITHUB_HEAD_REF"
           # git push origin HEAD:$GITHUB_HEAD_REF
           # echo "Finished"
