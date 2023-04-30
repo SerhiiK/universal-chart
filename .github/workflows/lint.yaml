@@ -26,6 +26,6 @@ jobs:
           git add README.md
           git commit -m "Generate documentation"
           echo "Branch is $GITHUB_HEAD_REF"
-          git checkout $GITHUB_HEAD_REF
+          git checkout "${{GITHUB_HEAD_REF}}"
           git push origin HEAD:$GITHUB_HEAD_REF
           echo "Finished"
