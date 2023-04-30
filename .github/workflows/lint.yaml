@@ -8,6 +8,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
 
       - name: Installng Helm
         uses: azure/setup-helm@v3.5
@@ -16,3 +19,13 @@ jobs:
 
       - name: Linting chart
         run: helm lint --strict
+
+      - name: Generate docs
+        uses: gabe565/setup-helm-docs-action@v1
+      - run: | 
+          helm-docs
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git add README.md
+          git commit -m "Generate documentation"
+          git push 
