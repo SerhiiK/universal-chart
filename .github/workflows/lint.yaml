@@ -23,9 +23,12 @@ jobs:
           helm-docs
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          git pull origin $GITHUB_HEAD_REF
-          git checkout origin/$GITHUB_HEAD_REF
+
           git branch 
+
+          # git pull origin $GITHUB_HEAD_REF
+          # git checkout origin/$GITHUB_HEAD_REF
+          # git branch 
 
           # git add README.md
           # git commit -m "Generate documentation"
