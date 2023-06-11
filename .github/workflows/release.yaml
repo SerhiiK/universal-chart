@@ -28,9 +28,22 @@ jobs:
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.5.0
+        with:
+          charts_repo_url: serhiik.github.io/universal-chart
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       
       - name: Generate documentation
         uses: gabe565/setup-helm-docs-action@v1.0.2
       - run: helm-docs
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
