@@ -25,6 +25,13 @@ serviceAccount:
 
 podAnnotations: {}
 
+# Optionally specify additional kubernetes configmaps to load environment variables from.
+# All key-value pairs within these configmaps will be set as environment variables.
+loadEnvFromConfigMaps: []
+# loadEnvFromConfigMaps:
+#    - config-one
+#    - config-two
+
 podSecurityContext: {}
   # fsGroup: 2000
 
