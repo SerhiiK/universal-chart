@@ -1,9 +1,9 @@
 name: Release chart
 
-on:
-  push:
-    tags:
-      - '*'
+on: [ push ] 
+#  push:
+#    tags:
+#      - '*'
 
 jobs:
   my-job:
@@ -30,7 +30,7 @@ jobs:
         uses: helm/chart-releaser-action@v1.5.0
         with:
           charts_repo_url: serhiik.github.io/universal-chart
-          charts_dir: /
+          charts_dir: ../
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
