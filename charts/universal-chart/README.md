@@ -7,8 +7,8 @@ A Helm chart for Kubernetes
 To install the chart with the release name `my-release`:
 
 ```console
-helm repo add repo http://test.com
-helm install my-release repo/universal-chart
+helm repo add repo https://serhiik.github.io/universal-chart/
+helm install my-release universal-chart/universal-chart
 ```
 ## Values
 
