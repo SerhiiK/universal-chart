@@ -1,49 +1,18 @@
 name: Release chart
 
-on: [ push ] 
-#  push:
-#    tags:
-#      - '*'
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
-  release-job:
-    runs-on: ubuntu-22.04
+  release-please:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: GoogleCloudPlatform/release-please-action@v3
         with:
-          fetch-depth: 0
-
-      - name: Configure Git
-        run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-      - name: Install Helm
-        uses: azure/setup-helm@v3.3
-        with:
-          version: v3.9.3
-
-      - name: Check version of chart
-        run: echo "Tag name is ${{ env.GITHUB_REF_NAME }}"
-      - name: Check pwd
-        run: pwd
-      - name: ls
-        run: ls
-
-      - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.5.0
-        with:
-          charts_repo_url: serhiik.github.io/universal-chart
-        env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-
-#      - name: Create Release
-#        id: create_release
-#        uses: actions/create-release@v1
-#        env:
-#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#        with:
-#          tag_name: ${{ github.ref }}
-#          release_name: Release ${{ github.ref }}
-#          draft: false
-#          prerelease: false
+          release-type: simple
